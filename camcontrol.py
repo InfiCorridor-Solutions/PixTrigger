@@ -13,13 +13,13 @@ def checkCam(flag):
         if result == 0:
             flag_cam_check = True
 
-    if flag == 1:
+    if flag == True:
         if flag_cam_check == True:
             print ("Camera Found!")
         elif flag_cam_check == False:
             print ("Camera not found")
             print ("Reconnect and re-run program")
-    elif flag == 0:
+    elif flag == False:
         return flag_cam_check
 
 def getClaim():
@@ -31,13 +31,13 @@ def getClaim():
             words = line.split()
             proc_id = words[1]
             ret = subprocess.check_output(["kill",proc_id])
-            print ret
+            print (ret)
     except subprocess.CalledProcessError:
-        print "Claimed USB device"
+        print ("Claimed USB device")
 
 def downloadAll():
-    checkCam(1)
-    if checkCam(0):
+    checkCam(False)
+    if checkCam(True):
         #if checkClaim():
         getClaim()
         print ("Downloading...")
@@ -50,8 +50,9 @@ def downloadAll():
         #reboot()
 
 def trigger():
-    checkCam(1)
-    if checkCam(0):
+    """ checkCam(False)
+    if checkCam(True): """
+    if True:
         #if checkClaim():
         getClaim()
         subprocess.check_output(["gphoto2" ,"--trigger-capture"])
@@ -94,7 +95,7 @@ def formatAll():
     frmt3 = frmt3[0:8]
     final_path = "".join([path_two,frmt3])
     contents = subprocess.check_output(["ls"] , cwd=final_path)
-    print contents
+    print (contents)
     if contents:
         print ("Files located")
         try:
