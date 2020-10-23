@@ -15,7 +15,7 @@ def checkCam(flag):
 
     if flag == 1:
         if flag_cam_check == True:
-            print "Camera Found!"
+            print ("Camera Found!")
         elif flag_cam_check == False:
             print ("Camera not found")
             print ("Reconnect and re-run program")
@@ -55,7 +55,7 @@ def trigger():
         #if checkClaim():
         getClaim()
         subprocess.check_output(["gphoto2" ,"--trigger-capture"])
-        
+
 
 def reboot(delay=1):
     #pass seconds to change speed
