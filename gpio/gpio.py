@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import geotagging as gt
 #gpio_pin_1 = 17
 #gpio_pin_2 = 27
 #gpio_pin_3 = 12
@@ -13,7 +14,8 @@ count = 0
 try:
     while True:
         op = str(GPIO.input(17))
-        print(op)
+        if op == "1":
+            gt.geo_tag("sample_1.JPG","rx0")
             
             #print(count)
 except:
