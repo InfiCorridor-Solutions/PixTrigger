@@ -3,15 +3,16 @@
 
 int main(void){
 int gpio_17 = 17;
+int stray_count = 0;
 wiringPiSetupGpio();
 pinMode(gpio_17,INPUT);
 while(1){
 	if(digitalRead(gpio_17)){
-	printf("1\n");
+	stray_count+=1;
+	printf("%d\n",&stray_count);
 }
-else{
-	printf("0\n");
+
 }
-}
+
 return 1;
 }
