@@ -15,6 +15,7 @@ try:
     while True:
         op = str(GPIO.input(17))
         if op == "1":
+            print("TRUE")
             gt.geo_tag("sample_1.JPG","rx0")
             
             #print(count)
