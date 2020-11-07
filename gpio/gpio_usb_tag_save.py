@@ -20,7 +20,7 @@ try:
     while True:
         op = str(GPIO.input(17))
         if op == "1":
-            gt.geo_tag("~/Downloads/sample_1.JPG",destination,"rx0")
+            gt.geo_tag("sample_1.JPG",destination,"rx0")
             #print(count)
 except:
     print(count)
