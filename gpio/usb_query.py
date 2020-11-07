@@ -22,7 +22,7 @@ def create_project():
     project_name = input("Enter project name: ")
     datetimestamp = str(dt.datetime.now()).split()
     # Filenames cannot have : so we replace : with _
-    datetimestamp = datetimestamp[0]+datetimestamp[1].replace(":","_")
+    datetimestamp = datetimestamp[0]+"_"+datetimestamp[1].replace(":","_")
     final_project_name = project_name+"_"+str(datetimestamp)
     path_to_usb = get_usb_path()
     if path_to_usb is not None:
@@ -32,4 +32,5 @@ def create_project():
         return final_path
     else:
         pass
+
 
