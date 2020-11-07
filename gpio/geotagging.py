@@ -103,8 +103,12 @@ def custom_exif(original_exif,make):
     new_exif = exif_format
     return new_exif
 
-def geo_tag(file_name,cam_type="rx0"):
+def geo_tag(file_name,destination,cam_type):
     print(file_name)
+    # Accounting for images in a separate path, will be saved to the USB folder
+    if len(file_name.split('/')):
+        # Image name is extracted for saving purposes only and not accessing
+        image_name = file_name.split('/')[-1]
     img = Image.open(file_name)
 
     #Read the exif data
@@ -126,7 +130,8 @@ def geo_tag(file_name,cam_type="rx0"):
     # piexif.insert(exif_bytes, "tag2.jpg")
 
     #Dump in another image that is already present. here tag2_modified is already present before running the code
-    final_img_name = file_name[:-4]+"_updated.jpg"
+    final_img_name = destination+"/"+image_name[:-4]+"_updated.jpg"
+    print(final_img_name)
     img = img.save(final_img_name,quality=100)
     piexif.insert(exif_bytes, final_img_name)
 
