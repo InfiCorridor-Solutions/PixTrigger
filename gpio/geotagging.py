@@ -27,6 +27,7 @@ import sys
 #     camera_make = None
 
 #Dummy data, add the reading of the data from here
+#TODO check how the data can be retrieved in python
 def generate_data():
     latitude = 19.198858
     longitude = 72.838109
@@ -125,9 +126,6 @@ def geo_tag(file_name,destination,cam_type):
 
     #Dump the data into the image
     exif_bytes = piexif.dump(exif_dict)
-
-    #Dump in the same image
-    # piexif.insert(exif_bytes, "tag2.jpg")
 
     #Dump in another image that is already present. here tag2_modified is already present before running the code
     final_img_name = destination+"/"+image_name[:-4]+"_updated.jpg"
