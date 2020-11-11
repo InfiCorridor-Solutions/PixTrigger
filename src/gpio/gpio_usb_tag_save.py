@@ -2,12 +2,19 @@ import RPi.GPIO as GPIO
 import time
 import geotagging as gt
 import usb_query as uq
+
+# We use the BCM GPIO Numbering for this script.
 gpio_pin_17 = 17
 #gpio_pin_27 = 27
 #gpio_pin_12 = 12
 #gpio_pin_13 = 13
+
+#This sets the GPIO functions to read the BCM Pinout instead of actual numbers
 GPIO.setmode(GPIO.BCM)
+
+#Setup the pin so that it can read inputs. Also pull down intermediate values to account for stray non-high pulses.
 GPIO.setup(gpio_pin_17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+
 #GPIO.setup(gpio_pin_27,GPIO.IN)
 #GPIO.setup(gpio_pin_12,GPIO.IN)
 #GPIO.setup(gpio_pin_13,GPIO.IN)

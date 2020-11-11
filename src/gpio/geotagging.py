@@ -1,3 +1,7 @@
+"""
+This script is used in the gpio_usb_tag_save python script and is responsible for extracting the metadata and then inserting it back after updating.
+This is different from the regular geotagging (in the geotagging branch) script because this one only has functions.
+"""
 # https://piexif.readthedocs.io/en/latest/functions.html
 # https://stackoverflow.com/questions/53543549/change-exif-data-on-jpeg-without-altering-picture
 # https://stackoverflow.com/questions/44636152/how-to-modify-exif-data-in-python
@@ -15,16 +19,6 @@ from PIL import Image
 import datetime as dt
 from fractions import Fraction
 import sys
-# import time
-
-# start = time.time()
-# file_name = sys.argv[1]
-
-# try:
-#     if(sys.argv[2]):
-#         camera_make = str(sys.argv[-1]).lower()
-# except IndexError:
-#     camera_make = None
 
 #Dummy data, add the reading of the data from here
 #TODO check how the data can be retrieved in python
@@ -35,14 +29,21 @@ def generate_data():
     timestamp = dt.datetime.now()
     return (latitude,longitude,altitude,timestamp)
 
-#Takes a floating number and returns rational fractions
+
+"""
+Takes a floating number and returns rational fractions
+:param number: Floating or Double number that needs to be converted to rational eg. (10.1) --> (101,10)
+"""
 def rationalize(number):
     rational = Fraction(str(number))
     rationals = str(rational).split('/')
     numerator,denominator = int(rationals[0]),int(rationals[1])
     return (numerator,denominator)
 
-#Takes input as datetimestamp ie 'yyyy-mm-dd hh:mn:ss.sss' and splits into datestamp and timestamp
+"""
+Takes input as datetimestamp ie 'yyyy-mm-dd hh:mn:ss.sss' and splits into datestamp and timestamp
+:param datetimestamp: Standard python datetime.now() format input
+"""
 def clean_datetime(datetimestamp):
     date = str(datetimestamp).split(' ')[0]
     temp_date = date.split('-')
@@ -56,8 +57,12 @@ def clean_datetime(datetimestamp):
     timestamp = (hh,mn,ss)
     return (datestamp,timestamp)
 
+
 # https://stackoverflow.com/questions/2579535/convert-dd-decimal-degrees-to-dms-degrees-minutes-seconds-in-python
-#Converting decimal latlongs to degree,min,sec format
+"""
+Converting decimal latitude and longitude values to degree,min,sec format because piexif needs the data in a specific format
+:param dd: Decimal lat/lon input
+"""
 def decdeg_to_dms(dd):
    is_positive = dd >= 0
    dd = abs(dd)
@@ -67,7 +72,13 @@ def decdeg_to_dms(dd):
    seconds_num,seconds_denom = rationalize(round(seconds,3))
    return ((int(degrees),1),(int(minutes),1),(seconds_num,seconds_denom))
 
-#Data inputted into the exif needs to be in a particular format
+"""
+Data inputted into the exif needs to be in a particular format. We call this function to convert the received data into a format that can be inputted into the metadata
+:param dec_latitude: Decimal Latitude value
+:param dec_longitude: Decimal Longitude value
+:param dec_altitude: Decimal Altitude value
+:param datetimestamp: Python datetime.now() format
+"""
 def clean_data(dec_latitude,dec_longitude,dec_altitude,datetimestamp):
     latitude_tuple = decdeg_to_dms(dec_latitude)
     longitude_tuple = decdeg_to_dms(dec_longitude)
@@ -78,6 +89,12 @@ def clean_data(dec_latitude,dec_longitude,dec_altitude,datetimestamp):
     time = ((time_stamp[0],1),(time_stamp[1],1),(time_stamp[2][0],time_stamp[2][1]))
     return (latitude_tuple,longitude_tuple,altitude_tuple,date,time)
 
+"""
+This takes the metadata and the camera make to decide the format for the exif data
+:param original: This is the metadata that piexif gives in the form of a dictionary that can either be manipulated as is or can be used to extract necessary information.
+:param make: Since different sources give different metadata, we try to check the source.
+             This is not technically necessary since for eg. key no: 6 gives the altitude of the image; key no. 6 is the altitude irrespective of the source of the image.
+"""
 def custom_exif(original_exif,make):
     camera_make = make
     #Standard GPS EXIF Format
@@ -104,6 +121,13 @@ def custom_exif(original_exif,make):
     new_exif = exif_format
     return new_exif
 
+
+"""
+This function is called in the GPIO script. It takes an image, the destination of the updated image and the type of camera used to capture the image.
+:param file_name: The name of the file whose metadata needs to be changed. This can be either a name if the image is in the same path as this script or a path to the image.
+:destination: The final location where the updated image is saved. In the current implementation, it is a location of a folder on a USB Drive.
+:cam_type: String input of the type of camera used to capture the image.
+"""
 def geo_tag(file_name,destination,cam_type):
     print(file_name)
     # Accounting for images in a separate path, will be saved to the USB folder

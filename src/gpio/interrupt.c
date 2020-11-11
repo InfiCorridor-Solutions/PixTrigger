@@ -1,3 +1,6 @@
+/*
+This C code runs an infinite loop and checks for interrupts that occur on the defined GPIO pins
+*/
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
@@ -17,6 +20,7 @@
 // myInterrupt:  called every time an event occurs
 void myInterrupt(void) {
    printf("Interrupted\n");
+  //  Replace this section for whatever is needed while interrupt has occured
 }
 
 int main(void) {
