@@ -5,6 +5,10 @@ import usb_query as uq
 import camera as cam
 from datetime import datetime as dt
 from random import randint as rd
+
+#Global image counter number
+image_counter = 0
+
 # We use the BCM GPIO Numbering for this script.
 gpio_pin_17 = 17
 #gpio_pin_27 = 27
@@ -28,8 +32,9 @@ try:
     while True:
         op = str(GPIO.input(gpio_pin_17))
         if op == "1":
-            image_name = cam.capture_image(destination,str(rd(1,100)))
+            image_name = cam.capture_image(destination,str(image_counter))
             gt.geo_tag(image_name,destination,"rx0")
+            counter+=1
             #print(count)
 except:
     pass
