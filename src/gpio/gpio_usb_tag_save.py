@@ -32,10 +32,12 @@ try:
     while True:
         op = str(GPIO.input(gpio_pin_17))
         if op == "1":
+            start = time.time()
             image_name = cam.capture_image(destination,str(image_counter))
             gt.geo_tag(image_name,destination,"rx0")
             counter+=1
-            #print(count)
+            end = time.time()
+            print(end-start)
 except:
     pass
     
