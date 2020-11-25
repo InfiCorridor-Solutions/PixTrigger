@@ -23,12 +23,12 @@ GPIO.setup(gpio_pin_17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 # Create a folder in the USB media and return the path of the folder
 destination = uq.create_project()
-image_name = cam.capture_image(destination,str(rd(1,100)))
 # Replace sample_1.JPG with the actual image name or the image path
 try:
     while True:
         op = str(GPIO.input(gpio_pin_17))
         if op == "1":
+            image_name = cam.capture_image(destination,str(rd(1,100)))
             gt.geo_tag(image_name,destination,"rx0")
             #print(count)
 except:
