@@ -1,4 +1,4 @@
-"""
+cd"""
 This script is used in the gpio_usb_tag_save python script and is responsible for creating a folder on a USB Drive and providing a string path to the created folder
 """
 import subprocess as sp

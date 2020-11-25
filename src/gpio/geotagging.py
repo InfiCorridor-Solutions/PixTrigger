@@ -152,9 +152,9 @@ def geo_tag(file_name,destination,cam_type):
     exif_bytes = piexif.dump(exif_dict)
 
     #Dump in another image that is already present. here tag2_modified is already present before running the code
-    final_img_name = destination+"/"+image_name[:-4]+"_updated.jpg"
+    final_img_name = destination+"/"+image_name+"_updated"
     print(final_img_name)
-    img = img.save(final_img_name,quality=100)
+    img = img.save(final_img_name,quality=100,format="JPEG")
     piexif.insert(exif_bytes, final_img_name)
 
     # end = time.time()
