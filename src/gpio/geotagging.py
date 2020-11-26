@@ -157,6 +157,7 @@ def geo_tag(file_name,destination,cam_type):
     img = img.save(final_img_name,quality=100,format="JPEG")
     piexif.insert(exif_bytes, final_img_name)
 
+    print("Tagged")
     # end = time.time()
     return
     # Current = 0.49111151695251465s

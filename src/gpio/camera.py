@@ -35,7 +35,7 @@ def capture_image(cam,directory,name):
     camera_file.save(target)
 
     # Close camera connection
-    camera.exit()
+    #camera.exit()
 
     # Target is the final path of the image. It is used in 
     return target
