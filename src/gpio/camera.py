@@ -7,17 +7,19 @@ import sys
 import gphoto2 as gp
 from datetime import datetime as dt
 
+def cam_init():
+    camera = gp.Camera()
+    camera.init()
+    return camera
+
 """
 This function is called in the GPIO script. Uses the gphoto2 library (a wrapper for the libgphoto2) to capture the image and save it in a specified location. It returns the location of the saved image
 :param directory: Location of the diretory where the captured image is to be stored
 :param name:      Name of the image that will be stored
 """
-def capture_image(directory,name):
+def capture_image(cam,directory,name):
     # Create the camera object
-    camera = gp.Camera()
-
-    # Initialize the camera
-    camera.init()
+    camera = cam
 
     # Capture Image
     file_path = camera.capture(gp.GP_CAPTURE_IMAGE)

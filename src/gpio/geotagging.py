@@ -141,7 +141,7 @@ def geo_tag(file_name,destination,cam_type):
 
 
     # "0th", "GPS", "Exif", "1st" are possible keys for exif_dict
-    print(exif_dict["GPS"])
+    # print(exif_dict["GPS"])
 
     # New EXIF data function
     exif_dict["GPS"] = custom_exif(exif_dict["GPS"],cam_type)
@@ -158,6 +158,6 @@ def geo_tag(file_name,destination,cam_type):
     piexif.insert(exif_bytes, final_img_name)
 
     # end = time.time()
-
+    return
     # Current = 0.49111151695251465s
     # print(end-start)
