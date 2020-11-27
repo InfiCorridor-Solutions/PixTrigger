@@ -12,12 +12,17 @@ def cam_init():
     camera.init()
     return camera
 
+
+def capture_image_and_save(cam):
+    camera = cam
+    file_path = camera.capture(gp.GP_CAPTURE_IMAGE)
+
 """
 This function is called in the GPIO script. Uses the gphoto2 library (a wrapper for the libgphoto2) to capture the image and save it in a specified location. It returns the location of the saved image
 :param directory: Location of the diretory where the captured image is to be stored
 :param name:      Name of the image that will be stored
 """
-def capture_image(cam,directory,name):
+def capture_image_and_download(cam,directory,name):
     # Create the camera object
     camera = cam
 

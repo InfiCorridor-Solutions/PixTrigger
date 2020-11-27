@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
-import geotagging as gt
-import usb_query as uq
+# import geotagging as gt
+# import usb_query as uq
 import camera as cam
 from datetime import datetime as dt
 from random import randint as rd
@@ -26,7 +26,7 @@ GPIO.setup(gpio_pin_17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 #GPIO.setup(gpio_pin_13,GPIO.IN)
 
 # Create a folder in the USB media and return the path of the folder
-destination = uq.create_project()
+# destination = uq.create_project()
 camera = cam.cam_init()
 
 try:
@@ -35,9 +35,7 @@ try:
         #op = "y"
         if op == "1":
             start = time.time()
-            image_name = cam.capture_image_and_download(camera,destination,str(image_counter))
-            gt.geo_tag(image_name,destination,"rx0")
-            image_counter+=1
+            cam.capture_image_and_save(camera)
             end = time.time()
             print(end-start)
 except:
