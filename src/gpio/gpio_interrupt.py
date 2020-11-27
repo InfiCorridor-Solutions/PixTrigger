@@ -16,7 +16,7 @@ image_counter = 0
 def my_callback(channel):
     global image_counter
     print("TRIGGERED")
-    image_name = cam.capture_image(camera,destination,str(image_counter))
+    image_name = cam.capture_image_and_download(camera,destination,str(image_counter))
     gt.geo_tag(image_name,destination,"rx0")
     image_counter+=1
     return
