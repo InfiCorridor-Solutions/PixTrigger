@@ -27,6 +27,8 @@ GPIO.setup(gpio_pin_17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 # Create a folder in the USB media and return the path of the folder
 destination = uq.create_project()
+
+# Create a camera object that will be used for capturing and downloading the image
 camera = cam.cam_init()
 
 try:
@@ -35,7 +37,9 @@ try:
         #op = "y"
         if op == "1":
             start = time.time()
+            # Capture the image by passing the global camera object
             image_name = cam.capture_image_and_download(camera,destination,str(image_counter))
+            # Geotag the image and save it at destination
             gt.geo_tag(image_name,destination,"rx0")
             image_counter+=1
             end = time.time()
