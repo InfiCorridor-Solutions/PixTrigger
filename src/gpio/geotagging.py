@@ -19,7 +19,7 @@ from PIL import Image
 import datetime as dt
 from fractions import Fraction
 import sys
-
+import time
 #Dummy data, add the reading of the data from here
 #TODO check how the data can be retrieved in python
 def generate_data():
@@ -129,7 +129,7 @@ This function is called in the GPIO script. It takes an image, the destination o
 :cam_type: String input of the type of camera used to capture the image.
 """
 def geo_tag(file_name,destination,cam_type):
-    # print(file_name)
+    print(file_name)
     # Accounting for images in a separate path, will be saved to the USB folder
     if len(file_name.split('/')):
         # Image name is extracted for saving purposes only and not accessing
@@ -152,10 +152,10 @@ def geo_tag(file_name,destination,cam_type):
     exif_bytes = piexif.dump(exif_dict)
 
     #Dump in another image that is already present. here tag2_modified is already present before running the code
-    final_img_name = destination+"/"+image_name+"_updated"
+    #final_img_name = destination+"/"+image_name+"_updated"
     # print(final_img_name)
-    img = img.save(final_img_name,quality=100,format="JPEG")
-    piexif.insert(exif_bytes, final_img_name)
+    #img = img.save(final_img_name,quality=100,format="JPEG")
+    piexif.insert(exif_bytes, file_name)
 
     # print("Tagged")
     # end = time.time()

@@ -25,10 +25,12 @@ GPIO.setup(gpio_pin_17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 #GPIO.setup(gpio_pin_12,GPIO.IN)
 #GPIO.setup(gpio_pin_13,GPIO.IN)
 
+
 # Create a folder in the USB media and return the path of the folder
 destination = uq.create_project()
 
 # Create a camera object that will be used for capturing and downloading the image
+
 camera = cam.cam_init()
 
 try:
@@ -43,7 +45,7 @@ try:
             gt.geo_tag(image_name,destination,"rx0")
             image_counter+=1
             end = time.time()
-            print(end-start)
+            print("Geotagging: ",end-start,"\n")
 except:
     pass
     
