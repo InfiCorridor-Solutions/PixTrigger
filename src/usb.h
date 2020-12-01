@@ -5,5 +5,5 @@
 #include <iostream>
 
 std::string get_path(std::string command);
-void create_folder(std::string folder_path);
+std::string create_folder(std::string folder_path);
 std::string ls(std::string command);

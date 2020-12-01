@@ -39,29 +39,33 @@ std::string get_path(std::string command){
     return output;
 }
 
-void create_folder(std::string folder_path){
+std::string create_folder(std::string folder_path){
     std::string name{};
     std::string command;
     std::string datetime;
+    std::string fin;
 auto end = std::chrono::system_clock::now();
 std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 datetime = static_cast<std::string>(ctime(&end_time));
+int pos = datetime.find('\n');
+datetime.erase(pos);
 replace(datetime.begin(),datetime.end(),':','_');
 replace(datetime.begin(),datetime.end(),' ','_');
     cout << "Enter name of folder\n";
     cin >> name;
     command = "mkdir " + folder_path+name+"_"+datetime;
     system(command.c_str());
+    fin = folder_path+name+"_"+datetime;
+    return fin;
     
 }
 
-// int main(){
-//     std::string command = "ls /media/";
-//     std::string user{};
-//     std::string device_id{};
-
-//     user =  command + get_path(command);
-//     device_id = user + get_path(user);
-//     create_folder(device_id.substr(3));
-//     return EXIT_SUCCESS;
-// }
+/* int main(){
+     std::string command = "ls /media/";
+     std::string user{};
+     std::string device_id{};
+     user =  command + get_path(command);
+     device_id = user + get_path(user);
+     std::cout << typeid(create_folder(device_id.substr(3))).name();
+     return EXIT_SUCCESS;
+ }*/
