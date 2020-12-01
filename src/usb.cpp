@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
+#include <chrono>
+#include <ctime>
+#include <algorithm>
 using namespace std;
 
 std::string ls(std::string command){
@@ -39,9 +42,15 @@ std::string get_path(std::string command){
 void create_folder(std::string folder_path){
     std::string name{};
     std::string command;
+    std::string datetime;
+auto end = std::chrono::system_clock::now();
+std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+datetime = static_cast<std::string>(ctime(&end_time));
+replace(datetime.begin(),datetime.end(),':','_');
+replace(datetime.begin(),datetime.end(),' ','_');
     cout << "Enter name of folder\n";
     cin >> name;
-    command = "mkdir " + folder_path+name;
+    command = "mkdir " + folder_path+name+"_"+datetime;
     system(command.c_str());
     
 }
