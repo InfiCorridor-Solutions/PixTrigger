@@ -10,7 +10,7 @@ from random import randint as rd
 image_counter = 0
 
 # We use the BCM GPIO Numbering for this script.
-gpio_pin_17 = 17
+gpio_pin_23 = 23
 #gpio_pin_27 = 27
 #gpio_pin_12 = 12
 #gpio_pin_13 = 13
@@ -35,7 +35,7 @@ camera = cam.cam_init()
 
 try:
     while True:
-        op = str(GPIO.input(gpio_pin_17))
+        op = str(GPIO.input(gpio_pin_23))
         #op = "y"
         if op == "1":
             start = time.time()

@@ -31,7 +31,7 @@ def my_callback(channel):
     return
 
 # We use the BCM GPIO Numbering for this script.
-gpio_pin_17 = 17
+gpio_pin_23 = 23
 #gpio_pin_27 = 27
 #gpio_pin_12 = 12
 #gpio_pin_13 = 13
@@ -40,7 +40,7 @@ gpio_pin_17 = 17
 GPIO.setmode(GPIO.BCM)
 
 #Setup the pin so that it can read inputs. Also pull down intermediate values to account for stray non-high pulses.
-GPIO.setup(gpio_pin_17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(gpio_pin_23,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 #GPIO.add_event_detect(gpio_pin_17, GPIO.RISING, callback=my_callback, bouncetime=100)
 #GPIO.setup(gpio_pin_27,GPIO.IN)
 #GPIO.setup(gpio_pin_12,GPIO.IN)
@@ -50,10 +50,10 @@ GPIO.setup(gpio_pin_17,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 try:
     # Define the pin number on which ISR needs to be detect rising or falling edges.
     # bouncetime is the time in milliseconds where another edge detected is ignored
-    GPIO.add_event_detect(gpio_pin_17,GPIO.RISING,callback=my_callback,bouncetime=100)
+    GPIO.add_event_detect(gpio_pin_23,GPIO.RISING,callback=my_callback,bouncetime=100)
 
     while True:
-        #print("Waiting")
+        # ~ print("Waiting")
         pass
 except:
     pass
