@@ -65,7 +65,7 @@ capture_to_file(Camera *camera, GPContext *context, char *fn) {
 	printf("  Retval: %d\n", retval);
 }
 
-void capture_image(std::string path, std::string imagename){
+std::string capture_image(std::string path, std::string imagename){
 	Camera	*camera;
 	int	retval;
 	GPContext *context = sample_create_context();
@@ -111,6 +111,6 @@ void capture_image(std::string path, std::string imagename){
 	} else
 		printf("  fopen foo2.jpg failed.\n"); */
 	gp_camera_exit(camera, context);
-	return;
+	return temp;
 }
 

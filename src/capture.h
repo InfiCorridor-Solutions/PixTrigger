@@ -12,4 +12,4 @@
 
 static void
 capture_to_file(Camera *camera, GPContext *context, char *fn);
-void capture_image(std::string path, std::string imagename);
+std::string capture_image(std::string path, std::string imagename);
