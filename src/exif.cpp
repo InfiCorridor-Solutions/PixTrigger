@@ -1,6 +1,14 @@
+/*
+This function is responsible for executing the exiftool system command
+*/
 #include <iostream>
 using namespace std;
 #include <chrono>
+
+/*
+Edit the metadata of the image
+param path: Absolute path of the image whose metadata will be updated
+*/
 void tag_exif(std::string path) {
   string command =
       "exiftool -overwrite_original " + path +
@@ -12,7 +20,3 @@ void tag_exif(std::string path) {
   // - start ).count(); std::cout << duration << "\n";
   return;
 }
-
-//~ int main(int argc, char *argv[]) {
-
-//~ }

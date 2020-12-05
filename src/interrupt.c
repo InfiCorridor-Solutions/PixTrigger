@@ -42,12 +42,6 @@ int main(void) {
     return 1;
   }
 
-  //~ auto myInterrupt =[path]{
-  //~ std::string image_path;
-  //~ printf("Interrupted\n");
-  //~ image_path = capture_image(path, "foo");
-  //~ tag_exif(image_path);
-  //~ };
   // set Pin 17/0 generate an interrupt on low-to-high transitions
   // and attach myInterrupt() to the interrupt
   if (wiringPiISR(BUTTON_PIN_5, INT_EDGE_RISING, &myInterrupt) < 0) {
@@ -58,8 +52,9 @@ int main(void) {
   // This should be the main loop running that detects interrupts on the GPIO
   // Pins
   while (1) {
-    //~ printf( "Uninterrupted\n");
-    //~ delay( 300 ); // wait 1 second
+    /*
+      Run any piece of code here. If a rising edge is detected, the ISR will handle halt this and attend to the callback defined.
+    */
   }
 
   return 0;

@@ -1,3 +1,4 @@
+// Not a necessary function
 #include "capture.h"
 #include "usb.h"
 using namespace std;

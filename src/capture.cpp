@@ -13,9 +13,7 @@
  * and condensed into simple capture sample
  */
 
-/*
- g++ sample-capture.c autodetect.c config.c context.c -lgphoto2 -lgphoto2_port
-*/
+
 #include "defines.h"
 #include <fcntl.h>
 #include <gphoto2/gphoto2.h>
