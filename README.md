@@ -19,6 +19,14 @@ So we run <br>
 `make test` <br>
 `sudo make install`
 
+To Run the raspi code you can select two options <br>
+* You can run the code that geotags images when it detects a rising edge on the GPIO pin using the command <br>
+  `make main clean` <br><br>
+* Or you can run a test code that geotags one image and exits <br>
+  `make aux clean`<br>
+  
+ Both commands result in an executable file called v1 which can then be executed using `./v1'
+
 For Running the exif testing API use this <br>
 `make exiftool exiftoolpipe taginfo main clean` <br>
 in the *src/temp_exif_test/* folder
