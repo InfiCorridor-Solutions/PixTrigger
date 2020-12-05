@@ -1,15 +1,16 @@
 /*
-This C code runs an infinite loop and checks for interrupts that occur on the defined GPIO pins
+This C code runs an infinite loop and checks for interrupts that occur on the
+defined GPIO pins
 */
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <wiringPi.h>
-#include "usb.h"
 #include "capture.h"
 #include "exif.h"
 #include "path.h"
+#include "usb.h"
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <wiringPi.h>
 // The wiringPi library uses different number for the pins
 // http://wiringpi.com/wp-content/uploads/2013/03/gpio1.png
 std::string path;
@@ -21,42 +22,42 @@ std::string path;
 #define BUTTON_PIN_5 4 // Board Pin no:16, BCM GPIO Pin no:23
 #define BUTTON_PIN_6 5 // Board Pin no:18, BCM GPIO Pin no:24
 
-
 // myInterrupt:  called every time an event occurs
 void myInterrupt(void) {
   std::string image_path;
-   printf("Interrupted\n");
-   image_path = capture_image(path, "foo");
-   tag_exif(image_path);
+  printf("Interrupted\n");
+  image_path = capture_image(path, "foo");
+  tag_exif(image_path);
   //  Replace this section for whatever is needed while interrupt has occured
 }
 
 int main(void) {
-  
-  //~ Initialise the file structure needed to save 
+
+  //~ Initialise the file structure needed to save
   path = make_command();
 
   // sets up the wiringPi library
-  if (wiringPiSetup () < 0) {
-      fprintf (stderr, "Unable to setup wiringPi: %s\n", strerror (errno));
-      return 1;
-  }
-    
-  //~ auto myInterrupt =[path]{
-  //~ std::string image_path;
-   //~ printf("Interrupted\n");
-   //~ image_path = capture_image(path, "foo");
-   //~ tag_exif(image_path);
-    //~ };
-  // set Pin 17/0 generate an interrupt on low-to-high transitions
-  // and attach myInterrupt() to the interrupt
-  if ( wiringPiISR (BUTTON_PIN_5, INT_EDGE_RISING, &myInterrupt) < 0 ) {
-      fprintf (stderr, "Unable to setup ISR: %s\n", strerror (errno));
-      return 1;
+  if (wiringPiSetup() < 0) {
+    fprintf(stderr, "Unable to setup wiringPi: %s\n", strerror(errno));
+    return 1;
   }
 
-// This should be the main loop running that detects interrupts on the GPIO Pins
-  while ( 1 ) {
+  //~ auto myInterrupt =[path]{
+  //~ std::string image_path;
+  //~ printf("Interrupted\n");
+  //~ image_path = capture_image(path, "foo");
+  //~ tag_exif(image_path);
+  //~ };
+  // set Pin 17/0 generate an interrupt on low-to-high transitions
+  // and attach myInterrupt() to the interrupt
+  if (wiringPiISR(BUTTON_PIN_5, INT_EDGE_RISING, &myInterrupt) < 0) {
+    fprintf(stderr, "Unable to setup ISR: %s\n", strerror(errno));
+    return 1;
+  }
+
+  // This should be the main loop running that detects interrupts on the GPIO
+  // Pins
+  while (1) {
     //~ printf( "Uninterrupted\n");
     //~ delay( 300 ); // wait 1 second
   }
