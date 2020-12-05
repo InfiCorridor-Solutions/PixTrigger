@@ -75,7 +75,7 @@ std::string capture_image(std::string path, std::string imagename) {
   char *data;
   unsigned long size;
 
-  gp_log_add_func(GP_LOG_ERROR, errordumper, NULL);
+  //~ gp_log_add_func(GP_LOG_ERROR, errordumper, NULL);
   gp_camera_new(&camera);
 
   /* When I set GP_LOG_DEBUG instead of GP_LOG_ERROR above, I noticed that the
