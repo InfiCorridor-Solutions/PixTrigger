@@ -18,3 +18,7 @@ So we run <br>
 `perl Makefile.PL` <br>
 `make test` <br>
 `sudo make install`
+
+For Running the exif testing API use this <br>
+`make exiftool exiftoolpipe taginfo main clean` <br>
+in the *src/temp_exif_test/* folder
