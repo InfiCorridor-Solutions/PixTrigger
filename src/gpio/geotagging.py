@@ -19,7 +19,7 @@ from PIL import Image
 import datetime as dt
 from fractions import Fraction
 import sys
-
+import time
 #Dummy data, add the reading of the data from here
 #TODO check how the data can be retrieved in python
 def generate_data():
@@ -141,23 +141,24 @@ def geo_tag(file_name,destination,cam_type):
 
 
     # "0th", "GPS", "Exif", "1st" are possible keys for exif_dict
-    print(exif_dict["GPS"])
+    # print(exif_dict["GPS"])
 
     # New EXIF data function
     exif_dict["GPS"] = custom_exif(exif_dict["GPS"],cam_type)
 
-    print(exif_dict["GPS"])
+    # print(exif_dict["GPS"])
 
     #Dump the data into the image
     exif_bytes = piexif.dump(exif_dict)
 
     #Dump in another image that is already present. here tag2_modified is already present before running the code
-    final_img_name = destination+"/"+image_name[:-4]+"_updated.jpg"
-    print(final_img_name)
-    img = img.save(final_img_name,quality=100)
-    piexif.insert(exif_bytes, final_img_name)
+    #final_img_name = destination+"/"+image_name+"_updated"
+    # print(final_img_name)
+    #img = img.save(final_img_name,quality=100,format="JPEG")
+    piexif.insert(exif_bytes, file_name)
 
+    # print("Tagged")
     # end = time.time()
-
+    return
     # Current = 0.49111151695251465s
     # print(end-start)
