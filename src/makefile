@@ -24,7 +24,7 @@ delete_exe:
 	rm -f interrupt_capture single_capture
 
 build_main: interrupt make_usb make_exif make_capture make_context  make_path 
-	$(CC) $(CFLAGS) -o interrupt_capture interrupt.o capture.o context.o usb.o path.o exif.o $(XFLAGS) -I$(HEADER_LOC) -I$(DEFINES_LOC)
+	$(CC) $(CFLAGS) -o interrupt_capture interrupt.o capture.o context.o usb.o path.o exif.o $(LFLAGS) -I$(HEADER_LOC) -I$(DEFINES_LOC)
 	@echo '\033[0;32m'"interrupt_capture.exe was made"'\033[0m'
 	@echo "DELETING OBJECT FILES"
 
