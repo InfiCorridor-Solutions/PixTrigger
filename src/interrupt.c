@@ -2,15 +2,15 @@
 This C code runs an infinite loop and checks for interrupts that occur on the
 defined GPIO pins
 */
-#include "capture.h"
-#include "exif.h"
-#include "path.h"
-#include "usb.h"
+#include "headers/capture.h"
+#include "headers/exif.h"
+#include "headers/path.h"
+#include "headers/usb.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <wiringPi.h>
+// #include <wiringPi.h>
 // The wiringPi library uses different number for the pins
 // http://wiringpi.com/wp-content/uploads/2013/03/gpio1.png
 std::string path;
@@ -37,17 +37,17 @@ int main(void) {
   path = make_command();
 
   // sets up the wiringPi library
-  if (wiringPiSetup() < 0) {
-    fprintf(stderr, "Unable to setup wiringPi: %s\n", strerror(errno));
-    return 1;
-  }
+  // if (wiringPiSetup() < 0) {
+  //   fprintf(stderr, "Unable to setup wiringPi: %s\n", strerror(errno));
+  //   return 1;
+  // }
 
   // set Pin 17/0 generate an interrupt on low-to-high transitions
   // and attach myInterrupt() to the interrupt
-  if (wiringPiISR(BUTTON_PIN_5, INT_EDGE_RISING, &myInterrupt) < 0) {
-    fprintf(stderr, "Unable to setup ISR: %s\n", strerror(errno));
-    return 1;
-  }
+  // if (wiringPiISR(BUTTON_PIN_5, INT_EDGE_RISING, &myInterrupt) < 0) {
+  //   fprintf(stderr, "Unable to setup ISR: %s\n", strerror(errno));
+  //   return 1;
+  // }
 
   // This should be the main loop running that detects interrupts on the GPIO
   // Pins

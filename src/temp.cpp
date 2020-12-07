@@ -1,10 +1,10 @@
 /*
 This code creates a folder on the USB device, capture one image and geotags it.
 */
-#include "capture.h"
-#include "exif.h"
-#include "path.h"
-#include "usb.h"
+#include "headers/capture.h"
+#include "headers/exif.h"
+#include "headers/path.h"
+#include "headers/usb.h"
 #include <iostream>
 using namespace std;
 int main(){

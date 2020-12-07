@@ -4,10 +4,53 @@ CFLAGS = -Wall -g
 LFLAGS = -lwiringPi -lgphoto2 -lgphoto2_port
 # XFLAGS is used for non-interrupt checking code
 XFLAGS = -lgphoto2 -lgphoto2_port
-main: interrupt.o capture.o context.o usb.o path.o exif.o
-	$(CC) $(CFLAGS) -o v1 interrupt.o capture.o context.o usb.o path.o exif.o $(LFLAGS)
+CAPTURE_LOC = ./capture
+CONTEXT_LOC = ./context
+HEADER_LOC = ./headers/
+EXIF_LOC = ./exif
+PATH_LOC = ./path
+USB_LOC = ./usb
+DEFINES_LOC = ./headers/
 
-aux: temp.o capture.o context.o usb.o path.o exif.o
-	$(CC) $(CFLAGS) -o v1 temp.o capture.o context.o usb.o path.o exif.o $(XFLAGS)
-clean:
+
+main: build_main
 	rm -f *.o
+
+aux: build_aux
+	rm -f *.o
+
+delete_exe:
+	@echo '\033[0;31m'"DELETING EXECUTABLES"'\033[0m'
+	rm -f interrupt_capture single_capture
+
+build_main: interrupt make_usb make_exif make_capture make_context  make_path 
+	$(CC) $(CFLAGS) -o interrupt_capture interrupt.o capture.o context.o usb.o path.o exif.o $(XFLAGS) -I$(HEADER_LOC) -I$(DEFINES_LOC)
+	@echo '\033[0;32m'"interrupt_capture.exe was made"'\033[0m'
+	@echo "DELETING OBJECT FILES"
+
+build_aux: temp make_usb make_exif make_capture make_context  make_path 
+	$(CC) $(CFLAGS) -o single_capture temp.o capture.o context.o usb.o path.o exif.o $(XFLAGS) -I$(HEADER_LOC) -I$(DEFINES_LOC)
+	@echo '\033[0;32m'"single_capture.exe was made"'\033[0m'
+	@echo "DELETING OBJECT FILES"
+
+temp:
+	$(CC) $(CFLAGS) -c temp.cpp
+
+interrupt:
+	$(CC) $(CFLAGS) -c interrupt.c
+
+make_capture:
+	$(CC) $(CFLAGS) -c $(CAPTURE_LOC)/capture.cpp -I$(DEFINES_LOC)
+
+make_context:
+	$(CC) $(CFLAGS) -c $(CONTEXT_LOC)/context.c -I$(DEFINES_LOC)
+
+make_path:
+	$(CC) $(CFLAGS) -c $(PATH_LOC)/path.cpp -I$(DEFINES_LOC)
+
+make_usb:
+	$(CC) $(CFLAGS) -c $(USB_LOC)/usb.cpp -I$(DEFINES_LOC)
+
+make_exif:
+	$(CC) $(CFLAGS) -c $(EXIF_LOC)/exif.cpp -I$(DEFINES_LOC)
+
