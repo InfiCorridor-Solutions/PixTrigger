@@ -19,6 +19,9 @@ So we run <br>
 `make test` <br>
 `sudo make install`
 
+Install libgphoto2 and gphoto2 using <br>
+`make install`
+
 To Run the raspi code you can select two options <br>
 * You can run the code that geotags images when it detects a rising edge on the GPIO pin using the command <br>
   `make main` <br><br>
