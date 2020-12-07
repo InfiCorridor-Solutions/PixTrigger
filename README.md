@@ -21,11 +21,14 @@ So we run <br>
 
 To Run the raspi code you can select two options <br>
 * You can run the code that geotags images when it detects a rising edge on the GPIO pin using the command <br>
-  `make main clean` <br><br>
+  `make main` <br><br>
 * Or you can run a test code that geotags one image and exits <br>
-  `make aux clean`<br>
+  `make aux`<br>
   
- Both commands result in an executable file called v1 which can then be executed using `./v1'
+ Both commands create separate executable files called interrupt_capture and single_capture respectively<br>
+ 
+ To delete the executables, simple run<br>
+ `make delete_exe`
 
 For Running the exif testing API use this <br>
 `make exiftool exiftoolpipe taginfo main clean` <br>
