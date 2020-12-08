@@ -1,0 +1,1 @@
+void exif_api_tag(std::string image_loc);
