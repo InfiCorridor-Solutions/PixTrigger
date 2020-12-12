@@ -23,25 +23,27 @@ So we run <br>
 Install libgphoto2 and gphoto2 using <br>
 `make install`
 
-To Run the raspi code you can select two options <br>
-* You can run the code that geotags images when it detects a rising edge on the GPIO pin using the command <br>
-  `make main` <br><br>
+To run code you can select two options <br>
+* You can run the code that geotags images when it detects a rising edge on the GPIO pin using the command<br>
+  `make main` **(Raspberry PI ONLY)**<br><br>
 * Or you can run a test code that geotags one image and exits <br>
-  `make aux`<br>
+  `make aux` **(General)**<br>
   
  Both commands create separate executable files called interrupt_capture and single_capture respectively<br>
  
  To delete the executables, simple run<br>
  `make delete_exe`
 
-For Running the exif testing API use this <br>
+To Run the EXIV2 API Install the exiv2 library: https://www.exiv2.org/download.html <br>
+To Run the exiv2API use this <br>
+`make exiv2` <br>
+in the makefile in the *src/* folder <br>
+This creates an executable file called exiv2api_capture <br>
+<br>
+To Run the exiftool API use this <br>
 `make exiftool exiftoolpipe taginfo main clean` <br>
-in the *src/temp_exif_test/* folder
+in the makefile in the *src/temp_exif_test/* folder
 
 Wiring PI is already present on the raspi, if not then follow this: http://wiringpi.com/download-and-install/
 
-Compile the gpio.c file like this <br>
-`cc gpio.c -lwiringPi` <br>
-or <br>
-`cc gpio.c -I/usr/local/include -L/usr/local/lib -lwiringPi`
 
