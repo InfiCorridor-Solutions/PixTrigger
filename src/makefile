@@ -1,0 +1,64 @@
+CC = g++
+CFLAGS = -Wall -g
+# LFLAGS is used for the interrupt checking code
+LFLAGS = -lwiringPi -lgphoto2 -lgphoto2_port
+# XFLAGS is used for non-interrupt checking code
+XFLAGS = -lgphoto2 -lgphoto2_port
+
+# CXX File locations
+CAPTURE_LOC = ./capture
+CONTEXT_LOC = ./context
+EXIF_LOC = ./exif
+PATH_LOC = ./path
+USB_LOC = ./usb
+DEFINES_LOC = ./headers/
+
+main: build_main
+	rm -f *.o
+
+aux: build_aux
+	rm -f *.o
+
+delete_exe:
+	@echo '\033[0;31m'"DELETING EXECUTABLES"'\033[0m'
+	rm -f interrupt_capture single_capture
+
+install:
+	@echo "Installing dependencies"
+	@echo "Installing libgphoto2-6, libgphoto2-dev and gphoto2"
+	sudo apt install libgphoto2-6
+	sudo apt install libgphoto2-dev
+	sudo apt install gphoto2
+	@echo '\033[0;32m'"Run 'make main' or 'make aux' now"'\033[0m'
+
+build_main: interrupt make_usb make_exif make_capture make_context  make_path 
+	$(CC) $(CFLAGS) -o interrupt_capture interrupt.o capture.o context.o usb.o path.o exif.o $(LFLAGS) -I$(DEFINES_LOC)
+	@echo '\033[0;32m'"interrupt_capture.exe was made"'\033[0m'
+	@echo "DELETING OBJECT FILES"
+
+build_aux: temp make_usb make_exif make_capture make_context  make_path 
+	$(CC) $(CFLAGS) -o single_capture temp.o capture.o context.o usb.o path.o exif.o $(XFLAGS) -I$(DEFINES_LOC)
+	@echo '\033[0;32m'"single_capture.exe was made"'\033[0m'
+	@echo "DELETING OBJECT FILES"
+
+temp:
+	$(CC) $(CFLAGS) -c temp.cpp
+
+interrupt:
+	$(CC) $(CFLAGS) -c interrupt.c
+
+make_capture:
+	$(CC) $(CFLAGS) -c $(CAPTURE_LOC)/capture.cpp -I$(DEFINES_LOC)
+
+make_context:
+	$(CC) $(CFLAGS) -c $(CONTEXT_LOC)/context.c -I$(DEFINES_LOC)
+
+make_path:
+	$(CC) $(CFLAGS) -c $(PATH_LOC)/path.cpp -I$(DEFINES_LOC)
+
+make_usb:
+	$(CC) $(CFLAGS) -c $(USB_LOC)/usb.cpp -I$(DEFINES_LOC)
+
+make_exif:
+	$(CC) $(CFLAGS) -c $(EXIF_LOC)/exif.cpp -I$(DEFINES_LOC)
+

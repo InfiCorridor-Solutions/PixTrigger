@@ -1,2 +1,7 @@
+
+*.exe
+*.o
+*.out
 src/gpio/__pycache__
 src/gpio/*.pyc
+
