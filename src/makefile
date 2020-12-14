@@ -4,7 +4,6 @@ CFLAGS = -Wall -g
 LFLAGS = -lwiringPi -lgphoto2 -lgphoto2_port
 # XFLAGS is used for non-interrupt checking code
 XFLAGS = -lgphoto2 -lgphoto2_port
-# EFLAGS uses the EXIV2 Library
 EFLAGS = -lexiv2
 
 CAPTURE_LOC = ./capture
@@ -15,7 +14,7 @@ PATH_LOC = ./path
 USB_LOC = ./usb
 DEFINES_LOC = ./headers/
 CONVERSION_LOC = ./conversion
-EXIV2API_LOC = ./exiv2api/
+EXIV2_LOC = ./exiv2api
 
 main: build_main
 	rm -f *.o
@@ -23,7 +22,7 @@ main: build_main
 aux: build_aux
 	rm -f *.o
 
-exiv2: build_exiv2
+exiv2: build_exiv
 	rm -f *.o
 
 delete_exe:
@@ -40,8 +39,8 @@ build_aux: temp make_usb make_exif make_capture make_context  make_path
 	@echo '\033[0;32m'"single_capture.exe was made"'\033[0m'
 	@echo "DELETING OBJECT FILES"
 
-build_exiv2: exiv2apitest make_exiv2api make_conversion make_usb make_exif make_capture make_context  make_path 
-	$(CC) $(CFLAGS) -o exiv2api_capture exiv2apitest.o exiv2API.o conversion.o capture.o context.o usb.o path.o exif.o $(XFLAGS) -I$(HEADER_LOC) $(EFLAGS)
+build_exiv: exiv2apitest make_exiv2api make_conversion make_usb make_exif make_capture make_context  make_path 
+	$(CC) $(CFLAGS) -o exiv2api_capture exiv2apitest.o exiv2api.o conversion.o capture.o context.o usb.o path.o exif.o $(XFLAGS) -I$(HEADER_LOC) $(EFLAGS)
 	@echo '\033[0;32m'"exiv2api_capture.exe was made"'\033[0m'
 	@echo "DELETING OBJECT FILES"
 
@@ -70,7 +69,7 @@ make_exif:
 	$(CC) $(CFLAGS) -c $(EXIF_LOC)/exif.cpp -I$(DEFINES_LOC)
 
 make_exiv2api:
-	$(CC) $(CFLAGS) -c $(EXIV2API_LOC)/exiv2API.cpp -I$(DEFINES_LOC)
+	$(CC) $(CFLAGS) -c $(EXIV2_LOC)/exiv2api.cpp -I$(DEFINES_LOC)
 
 make_conversion:
 	$(CC) $(CFLAGS) -c $(CONVERSION_LOC)/conversion.cpp -I$(DEFINES_LOC)

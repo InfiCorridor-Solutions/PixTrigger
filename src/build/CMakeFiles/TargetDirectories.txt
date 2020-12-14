@@ -1,0 +1,4 @@
+/home/christo/Desktop/PixTrigger/src/build/CMakeFiles/rebuild_cache.dir
+/home/christo/Desktop/PixTrigger/src/build/CMakeFiles/edit_cache.dir
+/home/christo/Desktop/PixTrigger/src/build/CMakeFiles/single_capture.dir
+/home/christo/Desktop/PixTrigger/src/build/CMakeFiles/exiv_test.dir

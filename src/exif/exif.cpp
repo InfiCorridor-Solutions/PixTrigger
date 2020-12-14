@@ -12,7 +12,7 @@ param path: Absolute path of the image whose metadata will be updated
 void tag_exif(std::string path) {
   string command =
       "exiftool -overwrite_original " + path +
-      " -gpslatitude='72.156' -gpslongitude='48.1651' -gpsaltitude='50'";
+      " -gpslatitude='19.198802' -gpslongitude='72.838074' -gpsaltitude='50.1245' -gpslatituderef='North' -gpslongituderef='East'";
   // auto start = chrono::steady_clock::now();
   system(command.c_str());
   // auto end = chrono::steady_clock::now();
