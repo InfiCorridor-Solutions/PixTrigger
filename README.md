@@ -1,5 +1,5 @@
 # PixTrigger
-A free and open source tool to trigger cameras using Pixhawk and Raspberry Pi
+An open-source tool to trigger cameras and geotag them using the Pixhawk and a Raspberry Pi .
 
 
 Install ExifTool to use the code
