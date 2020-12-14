@@ -1,9 +1,10 @@
 CC = g++
 CFLAGS = -Wall -g
-# LFLAGS is used for the interrupt checking code
+# LFLAGS is the gphoto2 library and is used for the interrupt checking code
 LFLAGS = -lwiringPi -lgphoto2 -lgphoto2_port
-# XFLAGS is used for non-interrupt checking code
+# XFLAGS is the gphoto2 library and is used for the non-interrupt checking code
 XFLAGS = -lgphoto2 -lgphoto2_port
+# EFLAG is the exiv2 library location
 EFLAGS = -lexiv2
 
 CAPTURE_LOC = ./capture
