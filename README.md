@@ -32,13 +32,21 @@ To run code you can select two options <br>
  Both commands create separate executable files called interrupt_capture and single_capture respectively<br>
  
  To delete the executables, simple run<br>
- `make delete_exe`
+ `make delete_exe` <br>
 
 To Run the EXIV2 API Install the exiv2 library: https://www.exiv2.org/download.html <br>
 To Run the exiv2API use this <br>
 `make exiv2` <br>
 in the makefile in the *src/* folder <br>
 This creates an executable file called exiv2api_capture <br>
+
+Alternatively, you can use CMake to build the single_capture and the exiv2api_capture executables. *interrupt_capture will be included later* <br>
+To build using cmake <br>
+`mkdir build && cd build` in src <br>
+`cmake ..` <br>
+`make` <br>
+This will install both single_capture and the exiv2api_capture executables in the build folder.
+
 <br>
 To Run the exiftool API use this <br>
 `make exiftool exiftoolpipe taginfo main clean` <br>
