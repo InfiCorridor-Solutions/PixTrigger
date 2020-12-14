@@ -15,7 +15,7 @@ int main(){
 	std::string image_path; //Path of the image. This is fed to the geotagging function
 	path = make_command();
     clock_t begin, end;
-	while(i<5){
+	// while(i<5){
     begin = clock();
 	cout << path << "\n";
 	image_path = capture_image(path, std::to_string(i)); //foo here is the image name. Replace it with suitable name
@@ -24,7 +24,7 @@ int main(){
     end = clock();
     time = (double)(end - begin) / CLOCKS_PER_SEC;
 	tot_time = tot_time + time;
-	i++;
-    }
+	// i++;
+    // }
     printf("TOTAL Time taken is %f\n", tot_time);
 }
