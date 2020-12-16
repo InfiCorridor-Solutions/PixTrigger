@@ -4,4 +4,7 @@
 *.out
 src/gpio/__pycache__
 src/gpio/*.pyc
-
+/build/*
+.vscode
+__pycache__
+.DS_Store
