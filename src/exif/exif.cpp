@@ -9,10 +9,13 @@ using namespace std;
 Edit the metadata of the image
 param path: Absolute path of the image whose metadata will be updated
 */
-void tag_exif(std::string path) {
+void tag_exif(std::string path, double lat, double lon, double alt) {
   string command =
-      "exiftool -overwrite_original " + path +
-      " -gpslatitude='72.156' -gpslongitude='48.1651' -gpsaltitude='50'";
+      "exiftool -overwrite_original " 
+      + path
+      +" -gpslatitude='"+ to_string(lat)+"'" 
+      + " -gpslongitude='" + to_string(lon)+"'"
+      + " -gpsaltitude='" + to_string(alt) +"'";
   // auto start = chrono::steady_clock::now();
   system(command.c_str());
   // auto end = chrono::steady_clock::now();
