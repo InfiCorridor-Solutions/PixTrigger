@@ -1,6 +1,0 @@
-/Users/yashomdighe/Developer/PixTrigger/src/build/CMakeFiles/rebuild_cache.dir
-/Users/yashomdighe/Developer/PixTrigger/src/build/CMakeFiles/edit_cache.dir
-/Users/yashomdighe/Developer/PixTrigger/src/build/CMakeFiles/temp.dir
-/Users/yashomdighe/Developer/PixTrigger/src/build/exif/CMakeFiles/rebuild_cache.dir
-/Users/yashomdighe/Developer/PixTrigger/src/build/exif/CMakeFiles/edit_cache.dir
-/Users/yashomdighe/Developer/PixTrigger/src/build/exif/CMakeFiles/exif.dir
