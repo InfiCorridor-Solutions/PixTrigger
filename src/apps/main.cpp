@@ -13,15 +13,40 @@ This code creates a folder on the USB device, capture one image and geotags it.
 #include <mavsdk/plugins/telemetry/telemetry.h>
 #include <iostream>
 #include <thread>
+#include <wiringPi.h>
 
 using namespace mavsdk;
 using namespace std::this_thread;
 using namespace std::chrono;
 using namespace std;
 
+std::string path;
+int i = 0;
+#define BUTTON_PIN_1 0 // Board Pin no:11, BCM GPIO Pin no:17
+#define BUTTON_PIN_2 2 // Board Pin no:13, BCM GPIO Pin no:27
+#define BUTTON_PIN_3 3 // Board Pin no:15, BCM GPIO Pin no:22
+#define BUTTON_PIN_4 1 // Board Pin no:12, BCM GPIO Pin no:18
+#define BUTTON_PIN_5 4 // Board Pin no:16, BCM GPIO Pin no:23
+#define BUTTON_PIN_6 5 // Board Pin no:18, BCM GPIO Pin no:24
+
+
 #define ERROR_CONSOLE_TEXT "\033[31m" // Turn text on console red
 #define TELEMETRY_CONSOLE_TEXT "\033[34m" // Turn text on console blue
 #define NORMAL_CONSOLE_TEXT "\033[0m" // Restore normal console colour
+
+Telemetry::Position pose;
+
+void myInterrupt(void) {
+	std::cout << "PIXTEST" << '\n';
+	std::string image_path; //Path of the image. This is fed to the geotagging function
+	image_path = capture_image(path, std::to_string(i)); //foo here is the image name. Replace it with suitable name
+	tag_exif(image_path, pose.latitude_deg, pose.longitude_deg, pose.relative_altitude_m);
+	i++;
+//  tag_exif(image_path);
+  //  Replace this section for whatever is needed while interrupt has occured
+}
+
+
 
 void usage(std::string bin_name)
 {
@@ -40,9 +65,11 @@ void component_discovered(ComponentType component_type)
 }
 
 int main(int argc, char** argv){
-
+	
 	Mavsdk mavsdk;
-    std::string connection_url;
+    	Mavsdk::Configuration configuration(Mavsdk::Configuration::UsageType::CompanionComputer);
+	mavsdk.set_configuration(configuration);
+	std::string connection_url;
     ConnectionResult connection_result;
 
     bool discovered_system = false;
@@ -108,12 +135,24 @@ int main(int argc, char** argv){
 			  << " Altitude: " << pose.relative_altitude_m << " m"
 			  << NORMAL_CONSOLE_TEXT
 			  << std::endl;
-
-	std::string path; // Path of the folder where the image will be saved
-	std::string image_path; //Path of the image. This is fed to the geotagging function
-	path = make_command();
-	cout << path << "\n";
-	image_path = capture_image(path, "foo"); //foo here is the image name. Replace it with suitable name
-	tag_exif(image_path, pose.latitude_deg, pose.longitude_deg, pose.relative_altitude_m);
+   			  
+    path = make_command();
+	if (wiringPiSetup() < 0) {
+    fprintf(stderr, "Unable to setup wiringPi: %s\n", strerror(errno));
+    return 1;
+      }
+      if (wiringPiISR(BUTTON_PIN_5, INT_EDGE_RISING, &myInterrupt) < 0) {
+	fprintf(stderr, "Unable to setup ISR: %s\n", strerror(errno));
+	return 1;
+      }
+	while(1){
+	//std::cout << "NOT INTERRUPTED\n";
+}
+	//~ std::string path; // Path of the folder where the image will be saved
+	//~ std::string image_path; //Path of the image. This is fed to the geotagging function
+	//~ path = make_command();
+	//~ cout << path << "\n";
+	//~ image_path = capture_image(path, "foo"); //foo here is the image name. Replace it with suitable name
+	//~ tag_exif(image_path, pose.latitude_deg, pose.longitude_deg, pose.relative_altitude_m);
 	return 0;
 }

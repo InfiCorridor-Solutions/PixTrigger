@@ -14,4 +14,5 @@ target_link_libraries(pixtrigger
     MAVSDK::mavsdk
     gphoto2
     gphoto2_port
+    wiringPi
 )
