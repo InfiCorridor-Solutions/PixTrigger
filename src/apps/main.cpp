@@ -40,6 +40,7 @@ void myInterrupt(void) {
 	std::cout << "PIXTEST" << '\n';
 	std::string image_path; //Path of the image. This is fed to the geotagging function
 	image_path = capture_image(path, std::to_string(i)); //foo here is the image name. Replace it with suitable name
+	std::cout << pose.latitude_deg << " LATTT" << '\n';
 	tag_exif(image_path, pose.latitude_deg, pose.longitude_deg, pose.relative_altitude_m);
 	i++;
 //  tag_exif(image_path);
@@ -122,7 +123,7 @@ int main(int argc, char** argv){
                   << NORMAL_CONSOLE_TEXT << std::endl;
         return 1;
     }
-	Telemetry::Position pose;
+	//Telemetry::Position pose;
 	telemetry->subscribe_position([&pose](Telemetry::Position position) {
 		pose = position;
 	});
