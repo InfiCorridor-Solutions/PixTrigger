@@ -45,3 +45,12 @@ Compile the gpio.c file like this <br>
 or <br>
 `cc gpio.c -I/usr/local/include -L/usr/local/lib -lwiringPi`
 
+| TELEM Cable  | BCM GPIO Pin Number | Board Pin Number 
+| ------------- | ------------- | ------------- |
+| 1 VCC  | -  | -  |
+| 2 TX | GPIO 15  | 10  |
+| 3 RX | GPIO 14  | 8  |
+| 4 CTS | GPIO 17  | 11  |
+| 5 RTS | GPIO 16  | 36  |
+| 6 GND  | GND  | 6,14,20,30,34  |
+
