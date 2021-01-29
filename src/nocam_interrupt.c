@@ -26,9 +26,10 @@ int i = 0;
 void myInterrupt(void) {
   std::string image_path;
   printf("Interrupted\n");
-  image_path = capture_image(path,std::to_string(i));
+ std::string sample_img_path = "../resources/test_images/";
+  image_path = sample_img_path+std::to_string(i)+".jpg";
 i++;
-//  tag_exif(image_path);
+  tag_exif(image_path);
   //  Replace this section for whatever is needed while interrupt has occured
 }
 

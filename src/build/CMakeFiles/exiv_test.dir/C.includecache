@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../headers/defines.h
+gphoto2/gphoto2-camera.h
+-
+
+/home/christo/Desktop/PixTrigger/src/context/context.c
+defines.h
+/home/christo/Desktop/PixTrigger/src/context/defines.h
+stdio.h
+-
+
