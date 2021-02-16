@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/single_capture.dir/temp.cpp.o CMakeFiles/single_capture.dir/capture/capture.cpp.o CMakeFiles/single_capture.dir/context/context.c.o CMakeFiles/single_capture.dir/exif/exif.cpp.o CMakeFiles/single_capture.dir/path/path.cpp.o CMakeFiles/single_capture.dir/usb/usb.cpp.o  -o single_capture -lgphoto2 -lgphoto2_port 
