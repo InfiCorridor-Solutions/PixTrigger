@@ -15,6 +15,7 @@ using namespace std;
 This function just lists the files present at a location. Equivalent to ls
 */
 std::string ls(std::string command) {
+  std::string error = "ls: cannot access";
   const char *func_command = command.c_str();
   FILE *fpipe;
   char c = 0;
@@ -23,8 +24,15 @@ std::string ls(std::string command) {
   while (fread(&c, sizeof c, 1, fpipe)) {
     output += c;
   }
-  pclose(fpipe);
-  return output;
+  if(output=="") // A blank output is received during failure of the ls command
+  {
+    return "ERR";
+  }
+  else{
+    pclose(fpipe);
+    return output;
+  }
+  
 }
 
 /*
