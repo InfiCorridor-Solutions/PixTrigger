@@ -2,10 +2,10 @@
 This C code runs an infinite loop and checks for interrupts that occur on the
 defined GPIO pins
 */
-#include "capture.h"
-#include "exif.h"
-#include "path.h"
-#include "usb.h"
+#include "headers/capture.h"
+#include "headers/exif.h"
+#include "headers/path.h"
+#include "headers/usb.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +14,7 @@ defined GPIO pins
 // The wiringPi library uses different number for the pins
 // http://wiringpi.com/wp-content/uploads/2013/03/gpio1.png
 std::string path;
-
+int i = 0;
 #define BUTTON_PIN_1 0 // Board Pin no:11, BCM GPIO Pin no:17
 #define BUTTON_PIN_2 2 // Board Pin no:13, BCM GPIO Pin no:27
 #define BUTTON_PIN_3 3 // Board Pin no:15, BCM GPIO Pin no:22
@@ -26,8 +26,9 @@ std::string path;
 void myInterrupt(void) {
   std::string image_path;
   printf("Interrupted\n");
-  image_path = capture_image(path, "foo");
-  tag_exif(image_path);
+  image_path = capture_image(path,std::to_string(i));
+i++;
+//  tag_exif(image_path);
   //  Replace this section for whatever is needed while interrupt has occured
 }
 

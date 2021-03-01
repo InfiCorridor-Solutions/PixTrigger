@@ -1,40 +1,28 @@
 # PixTrigger
 A free and open source tool to trigger cameras using Pixhawk and Raspberry Pi
 
+## Install exiv2 <br>
 
-Install ExifTool to use the code
+1.  cd ~/Downloads <br>
+2.  wget https://www.exiv2.org/builds/exiv2-0.27.3-Source.tar.gz <br>
+3.  tar -xf exiv2-0.27.3-Source.tar.gz <br>
+4.  cd exiv2-0.27.3-Source/ <br>
+5.  cmake . <br>
 
-Download at: https://exiftool.org/Image-ExifTool-12.10.tar.gz
-or
-https://exiftool.org/index.html
+    ### IMPORTANT
+    #### Before executing the next command
+      1. Navigate into `~/Downloads/exiv2-0.27.3-Source/cmake` <br>
+      2. Find the compilerFlags.cmake file <br>
+      3. Edit the content of this file to the content at https://raw.githubusercontent.com/jtojnar/exiv2/bbe0b70840cf28b7dd8c0b7e9bb1b741aeda2efd/cmake/compilerFlags.cmake or check the `compilerFlags.cmake` in the repo
 
-Run these steps, adjust for version
-<br>
-`cd <your download directory>` <br>
-`tar -xf Image-ExifTool-12.10.tar.gz` <br>
-`cd Image-ExifTool-12.10` <br>
+6.  make <br>
+7.  sudo make install <br>
+8.  sudo ldconfig <br>
 
-Now you can use `./exiftool` to run the program, but we need to run it from another piece of code <br>
-So we run <br>
-`perl Makefile.PL` <br>
-`make test` <br>
-`sudo make install`
+#### You shoud find `exiv2` in `/usr/local/include` <br>
 
-To Run the raspi code you can select two options <br>
-* You can run the code that geotags images when it detects a rising edge on the GPIO pin using the command <br>
-  `make main clean` <br><br>
-* Or you can run a test code that geotags one image and exits <br>
-  `make aux clean`<br>
-  
- Both commands result in an executable file called v1 which can then be executed using `./v1'
+### To execute the code <br>
 
-For Running the exif testing API use this <br>
-`make exiftool exiftoolpipe taginfo main clean` <br>
-in the *src/temp_exif_test/* folder
-=======
-Wiring PI is already present on the raspi, if not then follow this: http://wiringpi.com/download-and-install/
-
-Compile the gpio.c file like this <br>
-`cc gpio.c -lwiringPi` <br>
-or <br>
-`cc gpio.c -I/usr/local/include -L/usr/local/lib -lwiringPi`
+cd `PixTrigger/src` <br>
+make exiv2 <br>
+./exiv2api_capture
