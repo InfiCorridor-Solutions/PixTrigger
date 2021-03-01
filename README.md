@@ -2,16 +2,15 @@
 A free and open source tool to trigger cameras using Pixhawk and Raspberry Pi (Tested on raspberry pi 3 model b+ and pixhawk 4)
 
 # Depenedencies 
-MavSDK
-ExifTool
-gphoto2
-cmake
+MavSDK,
+ExifTool,
+gphoto2,
+cmake.
 
-# TO DO 
-check performance of Exiftool vs Exiv2
+# To Do 
+Check performance of Exiftool vs Exiv2
 
-
-# USAGE
+# Usage
 
 Install and Build ExifTool as follows
 
@@ -41,8 +40,8 @@ Follow the instructions listed here to setup telem2 port for mavlink https://doc
 
 Connect the AUX pins set for triggering to board pin 16 (gpio 23) of the raspberry pi <br>
 Connect the telemetry cable between telem2 to port and raspberry pi as follows
-| TELEM Cable  | BCM GPIO Pin Number | Board Pin Number 
-| ------------- | ------------- | ------------- |
+| TELEM Cable  | BCM GPIO Pin Number | Board Pin Number | Remarks  
+| ------------- | ------------- | ------------- | ------------- |
 | 1 VCC  | -  | -  | (As per PX4 documentation you are strictly not supposed to connect this)
 | 2 TX | GPIO 15  | 10  |
 | 3 RX | GPIO 14  | 8  |
@@ -50,8 +49,8 @@ Connect the telemetry cable between telem2 to port and raspberry pi as follows
 | 5 RTS | GPIO 16  | 36  |(Optional. Yet to be tested if this matters)
 | 6 GND  | GND  | 6,14,20,30,34  
 
-To Build (From the pixtrigger repo)
-cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DCMAKE_SHARED_LINKER_FLAGS='-latomic' -Bbuild/default -H.
+To Build (From the pixtrigger repo) <br>
+`cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DCMAKE_SHARED_LINKER_FLAGS='-latomic' -Bbuild/default -H.`
 
-To run (From the pixtrigger repo)
-"./pixtrigger.sh"
+To run (From the pixtrigger repo) <br>
+`./pixtrigger.sh`
