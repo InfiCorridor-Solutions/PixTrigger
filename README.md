@@ -20,21 +20,44 @@ So we run <br>
 `make test` <br>
 `sudo make install`
 
+Install libgphoto2 and gphoto2 using <br>
+`make install`
+
 To Run the raspi code you can select two options <br>
 * You can run the code that geotags images when it detects a rising edge on the GPIO pin using the command <br>
-  `make main clean` <br><br>
+  `make main` <br><br>
 * Or you can run a test code that geotags one image and exits <br>
-  `make aux clean`<br>
+  `make aux`<br>
   
- Both commands result in an executable file called v1 which can then be executed using `./v1'
+ Both commands create separate executable files called interrupt_capture and single_capture respectively<br>
+ 
+ To delete the executables, simple run<br>
+ `make delete_exe`
 
 For Running the exif testing API use this <br>
 `make exiftool exiftoolpipe taginfo main clean` <br>
 in the *src/temp_exif_test/* folder
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> upstream/cpp_testing
 Wiring PI is already present on the raspi, if not then follow this: http://wiringpi.com/download-and-install/
 
 Compile the gpio.c file like this <br>
 `cc gpio.c -lwiringPi` <br>
 or <br>
 `cc gpio.c -I/usr/local/include -L/usr/local/lib -lwiringPi`
+<<<<<<< HEAD
+=======
+
+| TELEM Cable  | BCM GPIO Pin Number | Board Pin Number 
+| ------------- | ------------- | ------------- |
+| 1 VCC  | -  | -  |
+| 2 TX | GPIO 15  | 10  |
+| 3 RX | GPIO 14  | 8  |
+| 4 CTS | GPIO 17  | 11  |
+| 5 RTS | GPIO 16  | 36  |
+| 6 GND  | GND  | 6,14,20,30,34  |
+
+>>>>>>> upstream/cpp_testing

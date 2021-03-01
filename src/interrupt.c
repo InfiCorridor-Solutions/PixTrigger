@@ -2,10 +2,10 @@
 This C code runs an infinite loop and checks for interrupts that occur on the
 defined GPIO pins
 */
-#include "capture.h"
-#include "exif.h"
-#include "path.h"
-#include "usb.h"
+#include "headers/capture.h"
+#include "headers/exif.h"
+#include "headers/path.h"
+#include "headers/usb.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

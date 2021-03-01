@@ -2,7 +2,16 @@
 *.exe
 *.o
 *.out
+<<<<<<< HEAD
 =======
 src/gpio/__pycache__
 src/gpio/*.pyc
 
+=======
+src/gpio/__pycache__
+src/gpio/*.pyc
+/build/*
+.vscode
+__pycache__
+.DS_Store
+>>>>>>> upstream/cpp_testing
