@@ -2,10 +2,11 @@
 A free and open source tool to trigger cameras using Pixhawk and Raspberry Pi (Tested on raspberry pi 3 model b+ and pixhawk 4)
 
 # Depenedencies 
-MavSDK,
-ExifTool,
-gphoto2,
-cmake.
+MavSDK (To get telemetry info from the drone to geotag) https://mavsdk.mavlink.io/develop/en/index.html <br>
+ExifTool (To geotag images) https://exiftool.org/ <br>
+wiringpi (To read triggers) http://wiringpi.com/ <br>
+gphoto2 (To trigger the camera and transfer images) http://www.gphoto.org/ <br>
+cmake https://cmake.org/ <br>
 
 # To Do 
 Check performance of Exiftool vs Exiv2
