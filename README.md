@@ -33,14 +33,13 @@ So we run <br>
 
 Install libgphoto2 and gphoto2 by following https://github.com/gphoto/libgphoto2/blob/master/INSTALL
 
-
 On your drone (Using QGroundControl)
-Follow the instructions listed here to setup your camera https://docs.px4.io/master/en/peripherals/camera.html. Set Trigger mode to 
-4 (Distance, Mission Controlled) and set Trigger interface to GPIO
+Follow the instructions listed here to setup your camera https://docs.px4.io/master/en/peripherals/camera.html. <br> 
+Set Trigger mode to 4 (Distance, Mission Controlled) and set Trigger interface to GPIO
 
 Follow the instructions listed here to setup telem2 port for mavlink https://docs.px4.io/master/en/companion_computer/pixhawk_companion.html
 
-Connect the AUX pins set for triggering to board pin 16 (gpio 23) of the raspberry pi
+Connect the AUX pins set for triggering to board pin 16 (gpio 23) of the raspberry pi <br>
 Connect the telemetry cable between telem2 to port and raspberry pi as follows
 | TELEM Cable  | BCM GPIO Pin Number | Board Pin Number 
 | ------------- | ------------- | ------------- |
