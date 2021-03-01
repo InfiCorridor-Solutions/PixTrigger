@@ -39,7 +39,7 @@ Set Trigger mode to 4 (Distance, Mission Controlled) and set Trigger interface t
 
 Follow the instructions listed here to setup telem2 port for mavlink https://docs.px4.io/master/en/companion_computer/pixhawk_companion.html
 
-Connect the AUX pins set for triggering to board pin 16 (gpio 23) of the raspberry pi <br>
+Connect the AUX pins set for triggering to **board pin 16 (gpio 23)** of the raspberry pi <br>
 Connect the telemetry cable between telem2 to port and raspberry pi as follows
 | TELEM Cable  | BCM GPIO Pin Number | Board Pin Number | Remarks  
 | ------------- | ------------- | ------------- | ------------- |
@@ -50,8 +50,13 @@ Connect the telemetry cable between telem2 to port and raspberry pi as follows
 | 5 RTS | GPIO 16  | 36  |(Optional. Yet to be tested if this matters)
 | 6 GND  | GND  | 6,14,20,30,34  
 
-To Build (From the pixtrigger repo) <br>
+To Build the MavSDK repo on the raspberry pi follow the steps at https://mavsdk.mavlink.io/develop/en/contributing/build.html#build_cpp_linux <br>
+On step 5, instead of the provided cmake command use this one <br>
 `cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DCMAKE_SHARED_LINKER_FLAGS='-latomic' -Bbuild/default -H.`
+
+To Build the PixTrigger repo, use these commands <br>
+`mkdir build && cd build` <br>
+`cmake ..`
 
 To run (From the pixtrigger repo) <br>
 `./pixtrigger.sh`
