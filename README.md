@@ -1,6 +1,17 @@
 # PixTrigger
-A free and open source tool to trigger cameras using Pixhawk and Raspberry Pi
+A free and open source tool to trigger cameras using Pixhawk and Raspberry Pi (Tested on raspberry pi 3 model b+ and pixhawk 4)
 
+Depenedencies 
+MavSDK
+ExifTool
+gphoto2
+cmake
+
+TO DO 
+check performance of Exiftool vs Exiv2
+
+
+USAGE
 
 Install ExifTool to use the code
 
@@ -53,11 +64,35 @@ or <br>
 
 | TELEM Cable  | BCM GPIO Pin Number | Board Pin Number 
 | ------------- | ------------- | ------------- |
-| 1 VCC  | -  | -  |
+| 1 VCC  | -  | -  | (As per PX4 documentation you are strictly not supposed to connect this)
 | 2 TX | GPIO 15  | 10  |
 | 3 RX | GPIO 14  | 8  |
-| 4 CTS | GPIO 17  | 11  |
-| 5 RTS | GPIO 16  | 36  |
+| 4 CTS | GPIO 17  | 11  |(Optional. Yet to be tested if this matters)
+| 5 RTS | GPIO 16  | 36  |(Optional. Yet to be tested if this matters)
 | 6 GND  | GND  | 6,14,20,30,34  |
 
 >>>>>>> upstream/cpp_testing
+
+
+On your drone (Using QGroundControl)
+Follow the instructions listed here to setup your camera https://docs.px4.io/master/en/peripherals/camera.html. Set Trigger mode to 
+4 (Distance, Mission Controlled) and set Trigger interface to GPIO
+
+Follow the instructions listed here to setup telem2 port for mavlink https://docs.px4.io/master/en/companion_computer/pixhawk_companion.html
+
+Connect the AUX pins set for triggering to board pin 16 (gpio 23) of the raspberry pi
+Connect the telemetry cable between telem2 to port and raspberry pi as follows
+| TELEM Cable  | BCM GPIO Pin Number | Board Pin Number 
+| ------------- | ------------- | ------------- |
+| 1 VCC  | -  | -  | (As per PX4 documentation you are strictly not supposed to connect this)
+| 2 TX | GPIO 15  | 10  |
+| 3 RX | GPIO 14  | 8  |
+| 4 CTS | GPIO 17  | 11  |(Optional. Yet to be tested if this matters)
+| 5 RTS | GPIO 16  | 36  |(Optional. Yet to be tested if this matters)
+| 6 GND  | GND  | 6,14,20,30,34  
+
+To Build (From the pixtrigger repo)
+cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DCMAKE_SHARED_LINKER_FLAGS='-latomic' -Bbuild/default -H.
+
+To run (From the pixtrigger repo)
+"./pixtrigger.sh"
